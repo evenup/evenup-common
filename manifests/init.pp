@@ -20,7 +20,7 @@
 # Copyright 2012 EvenUp.
 #
 class common {
-  package { [ 'iftop', 'iotop', 'lsof', 'man', 'openssh-clients', 'rsync', 'screen', 'unzip', 'wget']:
+  package { [ 'bash-completion', 'iftop', 'iotop', 'lsof', 'man', 'openssh-clients', 'rsync', 'screen', 'unzip', 'wget']:
     ensure  => installed;
   }
 

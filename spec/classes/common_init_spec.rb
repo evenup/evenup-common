@@ -6,7 +6,7 @@ describe 'common', :type => :class do
   describe "Common class with no parameters, basic test" do
 
     it { should create_class('common') }
-    [ 'iftop', 'iotop', 'lsof', 'man', 'openssh-clients', 'rsync', 'screen',
+    [ 'bash-completion', 'iftop', 'iotop', 'lsof', 'man', 'openssh-clients', 'rsync', 'screen',
       'unzip', 'wget' ].each do |package|
       it { should create_package(package) }
     end
