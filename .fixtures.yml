@@ -1,0 +1,6 @@
+fixtures:
+#  repositories:
+#    apache: gitolite@git.ineu.us:puppet/evenup-apache.git
+  symlinks:
+    common: "#{source_dir}"
+
