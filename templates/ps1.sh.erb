@@ -1,0 +1,16 @@
+# Puppet managed ps1
+
+<% disposition = scope.lookupvar('disposition') -%>
+<% if disposition == 'prod' -%>
+# Production prompt, red
+export PS1='\[\033[01;31m\]<%= disposition %>\[\033[00m\] \u@\h:\w\$ '
+<% elsif disposition == 'demo' -%>
+# Demo prompt, yellow
+export PS1='\[\033[01;33m\]<%= disposition %>\[\033[00m\] \u@\h:\w\$ '
+<% elsif disposition == 'staging' -%>
+# Demo staging, blue
+export PS1='\[\033[01;34m\]<%= disposition %>\[\033[00m\] \u@\h:\w\$ '
+<% else -%>
+# Default prompt, green
+export PS1='\[\033[01;32m\]<%= disposition %>\[\033[00m\] \u@\h:\w\$ '
+<% end -%>
