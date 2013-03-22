@@ -1,2 +1,6 @@
+v0.1.11:
+  Add default bash PS1 prompt
+v0.1.10:
+  Add bash-completion package
 v0.1.9:
   Initial public release
