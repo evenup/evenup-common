@@ -36,4 +36,12 @@ class common {
   file { '/etc/init/control-alt-delete.conf':
     ensure  => absent;
   }
+  
+  file { '/etc/profile.d/ps1.sh':
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0555',
+    content => template('common/ps1.sh.erb'),
+  }
 }
