@@ -18,6 +18,7 @@ describe 'common', :type => :class do
     ) }
 
     it { should contain_file('/etc/init/control-alt-delete.conf').with_ensure('absent') }
+    it { should contain_file('/etc/profile.d/ps1.sh') }
 
   end
 

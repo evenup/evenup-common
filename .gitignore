@@ -1,2 +1,2 @@
 pkg
-spec/fixtures
+spec/fixtures/*
