@@ -1,4 +1,7 @@
 fixtures:
+  repositories:
+    beaver: git://github.com/evenup/evenup-beaver.git
+    concat: git://github.com/ripienaar/puppet-concat.git
   symlinks:
     common: "#{source_dir}"
 
