@@ -45,7 +45,7 @@ class common (
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
-    source  => 'puppet:///common/init.sysconfig'
+    source  => 'puppet:///modules/common/init.sysconfig'
   }
 
   file { '/etc/profile.d/ps1.sh':
