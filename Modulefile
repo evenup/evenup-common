@@ -1,5 +1,5 @@
 name 'evenup-common'
-version '0.1.11'
+version '0.2.0'
 author 'Justin Lambert <jlambert@letsevenup.com>'
 license 'Apache'
 summary 'Generic utilities and packages.'
