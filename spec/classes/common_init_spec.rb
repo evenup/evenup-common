@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'common', :type => :class do
-  let(:title) { 'init' }
+  let(:facts) { { :concat_basedir => '/var/lib/puppet/concat' } }
 
   describe "Common class with no parameters, basic test" do
 
@@ -18,8 +18,17 @@ describe 'common', :type => :class do
     ) }
 
     it { should contain_file('/etc/init/control-alt-delete.conf').with_ensure('absent') }
+    it { should contain_file('/etc/sysconfig/init') }
     it { should contain_file('/etc/profile.d/ps1.sh') }
 
+  end
+
+  describe 'beaver logging' do
+    let(:params) { { :logsagent => 'beaver' } }
+
+    it { should contain_beaver__stanza('/var/log/messages') }
+    it { should contain_beaver__stanza('/var/log/secure') }
+    it { should contain_beaver__stanza('/var/log/sudolog') }
   end
 
 end
