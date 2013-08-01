@@ -1,6 +1,8 @@
 v0.2.0:
   Secure RH init scripts
   Add option for beaver log shipping
+  Add ability to set root PW and create an "ohshit" user
+  Cleanup unused users from default install
 v0.1.11:
   Add default bash PS1 prompt
 v0.1.10:
