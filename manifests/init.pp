@@ -88,7 +88,7 @@ class common (
   }
 
   exec { 'common_newaliases':
-    command     => "/usr/bin/newaliases",
+    command     => '/usr/bin/newaliases',
     refreshonly => true,
   }
 
@@ -121,6 +121,7 @@ class common (
         tags    => ['sudolog', $::disposition],
       }
     }
+    default: {}
   }
 
 }
