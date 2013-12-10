@@ -12,10 +12,14 @@ describe 'common', :type => :class do
     end
     it { should create_package('ec2-boot-init').with_ensure('absent') }
 
-    it { should contain_service('cups').with(
-      'ensure'  => 'stopped',
-      'enable'  => 'false'
-    ) }
+    it "should disable services" do
+      [ 'cups', 'messagebus', 'netfs', 'portreserve' ].each do |service|
+        should contain_service(service).with(
+          'ensure'  => 'stopped',
+          'enable'  => 'false'
+        )
+      end
+    end
 
     it { should contain_file('/etc/init/control-alt-delete.conf').with_ensure('absent') }
     it { should contain_file('/etc/sysconfig/init') }
