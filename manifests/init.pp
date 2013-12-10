@@ -56,9 +56,9 @@ class common (
     ensure  => absent;
   }
 
-  service { 'cups':
+  service { [ 'cups', 'messagebus', 'netfs', 'portreserve' ]:
     ensure  => stopped,
-    enable  => false;
+    enable  => false,
   }
 
   file { '/etc/init/control-alt-delete.conf':
