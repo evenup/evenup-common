@@ -38,21 +38,6 @@ describe 'common', :type => :class do
     it { should contain_exec('common_newaliases') }
   end
 
-  describe '/ mount' do
-    describe 'no device' do
-      let(:params) { { :root_fstype => 'ext4' } }
-      it { should_not contain_mount('/') }
-    end
-
-    describe 'no fstype' do
-      let(:params) { { :root_device => '/dev/sda' } }
-      it { should_not contain_mount('/') }
-    end
-
-    let(:params) { { :root_device => '/dev/sda', :root_fstype => 'ext4' } }
-    it { should contain_mount('/') }
-  end
-
   describe 'beaver logging' do
     let(:params) { { :logsagent => 'beaver' } }
 

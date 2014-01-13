@@ -14,14 +14,6 @@
 #   String.  Recipient of root's mail.  Undef is to remove the alias
 #   Default: undef
 #
-# [*root_device*]
-#   String.  Root (/) device.  If set along with root_fstype ensures it is in
-#     the fstab with the noatime option
-#   Default: undef
-#
-# [*root_fstype*]
-#   String. FS type on the root device
-#   Default: undef
 #
 # === Examples
 #
@@ -38,8 +30,6 @@
 class common (
   $logsagent    = '',
   $root_mail    = undef,
-  $root_device  = undef,
-  $root_fstype  = undef,
 ){
 
   if $root_mail {
@@ -90,17 +80,6 @@ class common (
   exec { 'common_newaliases':
     command     => '/usr/bin/newaliases',
     refreshonly => true,
-  }
-
-  if $root_device and $root_fstype {
-    mount { '/':
-      ensure  => 'mounted',
-      device  => $root_device,
-      fstype  => $root_fstype,
-      options => 'defaults,noatime',
-      pass    => 1,
-      dump    => 1,
-    }
   }
 
   case $logsagent {
