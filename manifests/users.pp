@@ -1,9 +1,10 @@
 # Moved to their own class to set stage
 class common::users (
-  $root_pw      = undef,
-  $root_ssh_key = undef,
-  $ohshit_pw    = undef,
-  $ohshit_key   = undef,
+  $root_pw        = undef,
+  $root_ssh_key   = undef,
+  $root_priv_key  = undef,
+  $ohshit_pw      = undef,
+  $ohshit_key     = undef,
 ){
 
   if $root_pw {
@@ -11,6 +12,23 @@ class common::users (
       home_dir  => '/root',
       password  => $root_pw,
       ssh_key   => $root_ssh_key,
+    }
+  }
+
+  if $root_priv_key {
+    file { '/root/.ssh':
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0700',
+    }
+
+    file { '/root/.ssh/id_rsa':
+      ensure  => 'file',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0400',
+      source  => $root_priv_key,
     }
   }
 
