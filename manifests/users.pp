@@ -16,13 +16,6 @@ class common::users (
   }
 
   if $root_priv_key {
-    file { '/root/.ssh':
-      ensure  => 'directory',
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0700',
-    }
-
     file { '/root/.ssh/id_rsa':
       ensure  => 'file',
       owner   => 'root',
