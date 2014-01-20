@@ -1,3 +1,4 @@
+20140120 - v0.5.1
   Fix for account and common::users declaring /root/.ssh
 20140120 - v0.5.0
   Allow setting root's ssh key (public and private)
