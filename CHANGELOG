@@ -1,4 +1,5 @@
-  Remove dirname function (replaced with stdlib)
+20140120 - v0.4.0
+  Remove dirname function (conflicts with stdlib)
   Add puppet 3.4 to travis
 20140113 - v0.4.0
   Remove setting the root device params
