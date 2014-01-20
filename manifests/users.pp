@@ -1,14 +1,16 @@
 # Moved to their own class to set stage
 class common::users (
-  $root_pw    = undef,
-  $ohshit_pw  = undef,
-  $ohshit_key = undef,
+  $root_pw      = undef,
+  $root_ssh_key = undef,
+  $ohshit_pw    = undef,
+  $ohshit_key   = undef,
 ){
 
   if $root_pw {
     account { 'root':
       home_dir  => '/root',
       password  => $root_pw,
+      ssh_key   => $root_ssh_key,
     }
   }
 
