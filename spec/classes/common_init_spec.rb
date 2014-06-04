@@ -25,6 +25,8 @@ describe 'common', :type => :class do
     it { should contain_file('/etc/sysconfig/init') }
     it { should contain_file('/etc/profile.d/ps1.sh') }
     it { should contain_mailalias('root').with_ensure('absent') }
+    it { should_not contain_file('/usr/local/bin/tmpclean.sh') }
+    it { should contain_cron('tmpclean').with(:ensure => 'absent') }
     it { should_not contain_mount('/') }
     it { should_not contain_beaver__stanza('/var/log/messages') }
     it { should_not contain_beaver__stanza('/var/log/secure') }
@@ -36,6 +38,15 @@ describe 'common', :type => :class do
 
     it { should contain_mailalias('root').with_ensure('present').with_recipient('sucker@example.com') }
     it { should contain_exec('common_newaliases') }
+  end
+
+  describe 'tmpclean' do
+    let(:params) { { :clean_tmp => true } }
+
+    it { should contain_file('/usr/local/bin/tmpclean.sh') }
+    it { should contain_file('/usr/local/bin/tmpclean.sh').with(:content => /TMP_DIRS="\/tmp \/var\/tmp"/) }
+    it { should contain_file('/usr/local/bin/tmpclean.sh').with(:content => /AGE=\+30/) }
+    it { should contain_cron('tmpclean').with(:ensure => 'present', :command => '/usr/local/bin/tmpclean.sh') }
   end
 
   describe 'beaver logging' do
