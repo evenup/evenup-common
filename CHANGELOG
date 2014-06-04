@@ -1,3 +1,5 @@
+20140604 - v0.6.0
+  Add (optional) script to clean tmp dirs
 20140120 - v0.5.1
   Fix for account and common::users declaring /root/.ssh
 20140120 - v0.5.0
