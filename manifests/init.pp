@@ -30,6 +30,9 @@
 class common (
   $logsagent    = '',
   $root_mail    = undef,
+  $clean_tmp    = false,
+  $clean_age    = '+30',
+  $clean_paths  = '/tmp /var/tmp'
 ){
 
   if $root_mail {
@@ -80,6 +83,26 @@ class common (
   exec { 'common_newaliases':
     command     => '/usr/bin/newaliases',
     refreshonly => true,
+  }
+
+  if $clean_tmp {
+    file { '/usr/local/bin/tmpclean.sh':
+      ensure  => 'file',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0555',
+      content => template("${module_name}/tmpclean.sh.erb")
+    }
+
+    cron { 'tmpclean':
+      ensure  => 'present',
+      command => '/usr/local/bin/tmpclean.sh',
+      user    => 'root',
+      hour    => 1,
+      minute  => fqdn_rand(59),
+    }
+  } else {
+    cron { 'tmpclean': ensure => 'absent' }
   }
 
   case $logsagent {

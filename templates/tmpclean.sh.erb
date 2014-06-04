@@ -1,0 +1,19 @@
+#!/bin/bash
+
+TMP_DIRS="<%= @clean_paths %>"
+AGE=<%= @clean_age %>
+
+# Delete old files
+/usr/bin/find $TMP_DIRS -type f -a -mtime $AGE -print -delete
+
+# Delete old symlinks
+/usr/bin/find $TMP_DIRS -type l -a -mtime $AGE -print -delete
+
+# Delete old sockets
+/usr/bin/find $TMP_DIRS -type s -a -mtime $AGE -a -size 0 -print -delete
+
+# Delete all empty files
+/usr/bin/find $TMP_DIRS -type f -a -empty -print -delete
+
+# Delete all empty directories
+/usr/bin/find $TMP_DIRS -mindepth 1 -type d -a -empty -a ! -name 'lost+found' -print -delete
