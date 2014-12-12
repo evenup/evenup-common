@@ -14,4 +14,12 @@ class common::params {
   $stopped_services = undef
   $absent_files     = undef
 
+  $root_pw          = undef
+  $root_ssh_key     = undef
+  $root_priv_key    = undef
+  $ohshit_pw        = undef
+  $ohshit_key       = undef
+  $absent_users     = undef
+  $absent_groups    = undef
+
 }
