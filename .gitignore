@@ -1,3 +1,8 @@
-pkg/*
-spec/fixtures/*
-
+.*.sw?
+pkg/
+Gemfile.lock
+vendor/
+spec/fixtures/
+.vagrant/
+.bundle/
+coverage/
