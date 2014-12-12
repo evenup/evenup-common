@@ -1,3 +1,7 @@
+# Class common::params
+#
+# Default parameters for evenup/common
+#
 class common::params {
 
   $logsagent        = undef
