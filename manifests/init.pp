@@ -59,8 +59,8 @@ class common (
 
   if $stopped_services {
     service { $stopped_services:
-      ensure  => 'stopped',
-      enable  => false,
+      ensure => 'stopped',
+      enable => false,
     }
   }
 
@@ -71,11 +71,11 @@ class common (
   }
 
   file { '/etc/sysconfig/init':
-    ensure  => 'file',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0444',
-    source  => 'puppet:///modules/common/init.sysconfig'
+    ensure => 'file',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0444',
+    source => 'puppet:///modules/common/init.sysconfig'
   }
 
   file { '/etc/profile.d/ps1.sh':
@@ -121,18 +121,18 @@ class common (
     'beaver': {
       # Log monitoring for all machines
       beaver::stanza { '/var/log/messages':
-        type    => 'syslog',
-        tags    => ['messages', $::disposition],
+        type => 'syslog',
+        tags => ['messages', $::disposition],
       }
 
       beaver::stanza { '/var/log/secure':
-        type    => 'syslog',
-        tags    => ['secure', $::disposition],
+        type => 'syslog',
+        tags => ['secure', $::disposition],
       }
 
       beaver::stanza { '/var/log/sudolog':
-        type    => 'sudolog',
-        tags    => ['sudolog', $::disposition],
+        type => 'sudolog',
+        tags => ['sudolog', $::disposition],
       }
     }
     default: {}

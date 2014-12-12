@@ -9,34 +9,34 @@ class common::users (
 
   if $root_pw {
     account { 'root':
-      home_dir  => '/root',
-      password  => $root_pw,
-      ssh_key   => $root_ssh_key,
+      home_dir => '/root',
+      password => $root_pw,
+      ssh_key  => $root_ssh_key,
     }
   }
 
   if $root_priv_key {
     file { '/root/.ssh/id_rsa':
-      ensure  => 'file',
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0400',
-      source  => $root_priv_key,
+      ensure => 'file',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0400',
+      source => $root_priv_key,
     }
   }
 
   if $ohshit_pw {
     account { 'ohshit':
-      ensure        => 'present',
-      comment       => 'Emergency Backup User',
-      uid           => '999',
-      create_group  => true,
-      groups        => [ 'wheel' ],
-      password      => $ohshit_pw,
-      home_dir      => '/home/.ohshit',
-      shell         => '/bin/bash',
-      manage_home   => true,
-      ssh_key       => $ohshit_key,
+      ensure       => 'present',
+      comment      => 'Emergency Backup User',
+      uid          => '999',
+      create_group => true,
+      groups       => [ 'wheel' ],
+      password     => $ohshit_pw,
+      home_dir     => '/home/.ohshit',
+      shell        => '/bin/bash',
+      manage_home  => true,
+      ssh_key      => $ohshit_key,
     }
   }
 
