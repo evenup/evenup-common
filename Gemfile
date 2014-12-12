@@ -9,7 +9,7 @@ group :development, :unit_tests do
   gem 'json',                    :require => false
   gem 'puppet-syntax',           :require => false
   gem 'metadata-json-lint',      :require => false
-  gem 'puppet-blacksmith',       :require => false
+  gem 'vagrant-wrapper'
 end
 group :system_tests do
   gem 'beaker-rspec',  :require => false

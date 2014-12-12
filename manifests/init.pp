@@ -35,7 +35,7 @@ class common (
   $clean_paths      = $::common::params::clean_paths,
   $absent_packages  = $::common::params::absent_packages,
   $install_packages = $::common::params::install_packages,
-  $stopped_services = $::common::params::stop_services,
+  $stopped_services = $::common::params::stopped_services,
   $absent_files     = $::common::params::absent_files,
 ) inherits common::params {
 

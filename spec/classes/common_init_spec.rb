@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'common', :type => :class do
-  let(:facts) { { :concat_basedir => '/var/lib/puppet/concat' } }
+  let(:facts) { { :concat_basedir => '/var/lib/puppet/concat', :disposition => 'prod' } }
 
   describe "no parameters" do
 
