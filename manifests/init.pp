@@ -25,15 +25,19 @@
 #
 # === Copyright
 #
-# Copyright 2012 EvenUp.
+# Copyright 2014 EvenUp.
 #
 class common (
-  $logsagent    = '',
-  $root_mail    = undef,
-  $clean_tmp    = false,
-  $clean_age    = '+30',
-  $clean_paths  = '/tmp /var/tmp'
-){
+  $logsagent        = $::common::params::logsagent,
+  $root_mail        = $::common::params::root_mail,
+  $clean_tmp        = $::common::params::clean_tmp,
+  $clean_age        = $::common::params::clean_age,
+  $clean_paths      = $::common::params::clean_paths,
+  $absent_packages  = $::common::params::absent_packages,
+  $install_packages = $::common::params::install_packages,
+  $stopped_services = $::common::params::stop_services,
+  $absent_files     = $::common::params::absent_files,
+) inherits common::params {
 
   if $root_mail {
     $mail_ensure = 'present'
@@ -41,21 +45,29 @@ class common (
     $mail_ensure = 'absent'
   }
 
-  package { [ 'bash-completion', 'iftop', 'iotop', 'lsof', 'man', 'openssh-clients', 'rsync', 'screen', 'unzip', 'wget']:
-    ensure  => installed;
+  if $install_packages {
+    package { $install_packages:
+      ensure  => 'installed'
+    }
   }
 
-  package { 'ec2-boot-init':
-    ensure  => absent;
+  if $absent_packages {
+    package { $absent_packages:
+      ensure  => 'absent',
+    }
   }
 
-  service { [ 'cups', 'messagebus', 'netfs', 'portreserve' ]:
-    ensure  => stopped,
-    enable  => false,
+  if $stopped_services {
+    service { $stopped_services:
+      ensure  => 'stopped',
+      enable  => false,
+    }
   }
 
-  file { '/etc/init/control-alt-delete.conf':
-    ensure  => absent;
+  if $absent_files {
+    file { $absent_files:
+      ensure  => absent;
+    }
   }
 
   file { '/etc/sysconfig/init':

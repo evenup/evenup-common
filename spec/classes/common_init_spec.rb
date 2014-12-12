@@ -6,22 +6,6 @@ describe 'common', :type => :class do
   describe "no parameters" do
 
     it { should create_class('common') }
-    [ 'bash-completion', 'iftop', 'iotop', 'lsof', 'man', 'openssh-clients', 'rsync', 'screen',
-      'unzip', 'wget' ].each do |package|
-      it { should create_package(package) }
-    end
-    it { should create_package('ec2-boot-init').with_ensure('absent') }
-
-    it "should disable services" do
-      [ 'cups', 'messagebus', 'netfs', 'portreserve' ].each do |service|
-        should contain_service(service).with(
-          'ensure'  => 'stopped',
-          'enable'  => 'false'
-        )
-      end
-    end
-
-    it { should contain_file('/etc/init/control-alt-delete.conf').with_ensure('absent') }
     it { should contain_file('/etc/sysconfig/init') }
     it { should contain_file('/etc/profile.d/ps1.sh') }
     it { should contain_mailalias('root').with_ensure('absent') }
@@ -31,6 +15,32 @@ describe 'common', :type => :class do
     it { should_not contain_beaver__stanza('/var/log/messages') }
     it { should_not contain_beaver__stanza('/var/log/secure') }
     it { should_not contain_beaver__stanza('/var/log/sudolog') }
+  end
+
+  describe 'install packages' do
+    let(:params) { { :install_packages => ['wget', 'lsof'] } }
+
+    it { should contain_package('wget').with(:ensure => 'installed') }
+    it { should contain_package('lsof').with(:ensure => 'installed') }
+  end
+
+  describe 'remove packages' do
+    let(:params) { { :absent_packages => ['cups', 'nfs-utils'] } }
+
+    it { should contain_package('cups').with(:ensure => 'absent' ) }
+    it { should contain_package('nfs-utils').with(:ensure => 'absent' ) }
+  end
+
+  describe 'stop services' do
+    let(:params) { { :stopped_services => [ 'cups', 'cloud-init' ] } }
+    it { should contain_service('cups').with(:ensure => 'stopped', :enable => false ) }
+    it { should contain_service('cloud-init').with(:ensure => 'stopped', :enable => false ) }
+  end
+
+  describe 'remove files' do
+    let(:params) { { :absent_files => '/etc/init/control-alt-delete.conf' } }
+
+    it { should contain_file('/etc/init/control-alt-delete.conf').with(:ensure => 'absent' ) }
   end
 
   describe 'root alias' do
