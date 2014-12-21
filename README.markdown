@@ -7,9 +7,9 @@
     * [Beginning with common](#beginning-with-common)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
-7. [Changelog/Contributors](#changelog-contributors)
+6. [Limitations - OS compatibility, etc.](#limitations)
+7. [Development - Guide for contributing to the module](#development)
+8. [Changelog/Contributors](#changelog-contributors)
 
 ## Overview
 
@@ -33,6 +33,7 @@ By default, this module only installs a slightly updated command prompt and secu
 ### Beginning with common
 
 This module can be installed with
+
 ```
     puppet module install evenup-common
 ```
