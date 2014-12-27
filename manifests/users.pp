@@ -31,7 +31,6 @@ class common::users (
     account { 'ohshit':
       ensure       => 'present',
       comment      => 'Emergency Backup User',
-      uid          => '999',
       create_group => true,
       groups       => [ 'wheel' ],
       password     => $ohshit_pw,
@@ -39,6 +38,7 @@ class common::users (
       shell        => '/bin/bash',
       manage_home  => true,
       ssh_key      => $ohshit_key,
+      system       => true,
     }
   }
 
