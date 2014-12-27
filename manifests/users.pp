@@ -42,13 +42,18 @@ class common::users (
     }
   }
 
-  if $absent_users {
+  if $absent_users and $absent_groups {
+    user { $absent_users:
+      ensure => 'absent',
+    } ->
+    group { $absent_groups:
+      ensure => 'absent'
+    }
+  } elsif $absent_users {
     user { $absent_users:
       ensure => 'absent',
     }
-  }
-
-  if $absent_groups {
+  } elsif $absent_groups {
     group { $absent_groups:
       ensure => 'absent'
     }
