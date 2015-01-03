@@ -3,7 +3,7 @@
   "version": "0.6.0",
   "author": "Justin Lambert",
   "summary": "Module to manage packages, services, files, users, and groups not worthy of their own module",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/evenup/puppet-common",
   "project_page": "https://github.com/evenup/evenup-common",
   "issues_url": "https://github.com/evenup/evenup-common/issues",
