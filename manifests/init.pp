@@ -37,6 +37,7 @@ class common (
   $install_packages = $::common::params::install_packages,
   $stopped_services = $::common::params::stopped_services,
   $absent_files     = $::common::params::absent_files,
+  $firewall         = $::common::params::firewall,
 ) inherits common::params {
 
   if $root_mail {
@@ -95,6 +96,16 @@ class common (
   exec { 'common_newaliases':
     command     => '/usr/bin/newaliases',
     refreshonly => true,
+  }
+
+  if $firewall {
+    Firewall {
+      require => Class['common::fw_pre'],
+      before  => Class['common::fw_post'],
+    }
+
+    include common::fw_pre
+    include common::fw_post
   }
 
   if $clean_tmp {

@@ -15,6 +15,8 @@ describe 'common', :type => :class do
     it { should_not contain_beaver__stanza('/var/log/messages') }
     it { should_not contain_beaver__stanza('/var/log/secure') }
     it { should_not contain_beaver__stanza('/var/log/sudolog') }
+    it { should_not contain_class('common::fw_pre') }
+    it { should_not contain_class('common::fw_post') }
   end
 
   describe 'install packages' do
@@ -57,6 +59,26 @@ describe 'common', :type => :class do
     it { should contain_file('/usr/local/bin/tmpclean.sh').with(:content => /TMP_DIRS="\/tmp \/var\/tmp"/) }
     it { should contain_file('/usr/local/bin/tmpclean.sh').with(:content => /AGE=\+30/) }
     it { should contain_cron('tmpclean').with(:ensure => 'present', :command => '/usr/local/bin/tmpclean.sh') }
+  end
+
+  context 'with firewall module' do
+    let(:pre_condition) { 'define firewall ($iniface = undef, $destination = undef, $action = undef, $state = undef, $dport = undef, $proto = undef) {}' }
+    context 'default' do
+      it { should contain_class('common::fw_pre') }
+      it { should contain_class('common::fw_post') }
+    end
+
+    context 'firewall => false' do
+      let(:params) { { :firewall => false } }
+      it { should_not contain_class('common::fw_pre') }
+      it { should_not contain_class('common::fw_post') }
+    end
+
+    context 'firewall => true' do
+      let(:params) { { :firewall => true } }
+      it { should contain_class('common::fw_pre') }
+      it { should contain_class('common::fw_post') }
+    end
   end
 
   describe 'beaver logging' do
