@@ -1,4 +1,6 @@
-  Remove common::lint
+20150105 - v1.0.0
+  Add pre_fw and post_fw classes for puppetlabs/firewall
+  Remove common::line
   Remove hard-coded package, service, and file install/remove
 20140604 - v0.6.0
   Add (optional) script to clean tmp dirs
