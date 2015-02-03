@@ -119,7 +119,7 @@ class common (
 
     cron { 'tmpclean':
       ensure  => 'present',
-      command => '/usr/local/bin/tmpclean.sh',
+      command => '/usr/local/bin/tmpclean.sh > /dev/null',
       user    => 'root',
       hour    => 1,
       minute  => fqdn_rand(59),
