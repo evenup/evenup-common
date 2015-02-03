@@ -58,7 +58,7 @@ describe 'common', :type => :class do
     it { should contain_file('/usr/local/bin/tmpclean.sh') }
     it { should contain_file('/usr/local/bin/tmpclean.sh').with(:content => /TMP_DIRS="\/tmp \/var\/tmp"/) }
     it { should contain_file('/usr/local/bin/tmpclean.sh').with(:content => /AGE=\+30/) }
-    it { should contain_cron('tmpclean').with(:ensure => 'present', :command => '/usr/local/bin/tmpclean.sh') }
+    it { should contain_cron('tmpclean').with(:ensure => 'present', :command => '/usr/local/bin/tmpclean.sh > /dev/null') }
   end
 
   context 'with firewall module' do
