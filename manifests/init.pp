@@ -48,7 +48,7 @@ class common (
 
   if $install_packages {
     package { $install_packages:
-      ensure  => 'installed'
+      ensure  => 'installed',
     }
   }
 
@@ -76,7 +76,7 @@ class common (
     owner  => 'root',
     group  => 'root',
     mode   => '0444',
-    source => 'puppet:///modules/common/init.sysconfig'
+    source => 'puppet:///modules/common/init.sysconfig',
   }
 
   file { '/etc/profile.d/ps1.sh':
@@ -104,8 +104,8 @@ class common (
       before  => Class['common::fw_post'],
     }
 
-    include common::fw_pre
-    include common::fw_post
+    include ::common::fw_pre
+    include ::common::fw_post
   }
 
   if $clean_tmp {
@@ -114,7 +114,7 @@ class common (
       owner   => 'root',
       group   => 'root',
       mode    => '0555',
-      content => template("${module_name}/tmpclean.sh.erb")
+      content => template("${module_name}/tmpclean.sh.erb"),
     }
 
     cron { 'tmpclean':

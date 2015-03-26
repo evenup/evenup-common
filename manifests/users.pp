@@ -47,7 +47,7 @@ class common::users (
       ensure => 'absent',
     } ->
     group { $absent_groups:
-      ensure => 'absent'
+      ensure => 'absent',
     }
   } elsif $absent_users {
     user { $absent_users:
@@ -55,7 +55,7 @@ class common::users (
     }
   } elsif $absent_groups {
     group { $absent_groups:
-      ensure => 'absent'
+      ensure => 'absent',
     }
   }
 
