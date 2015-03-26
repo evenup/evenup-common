@@ -1,10 +1,10 @@
 {
   "name": "evenup-common",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Justin Lambert",
   "summary": "Module to manage packages, services, files, users, and groups not worthy of their own module",
   "license": "Apache-2.0",
-  "source": "https://github.com/evenup/puppet-common",
+  "source": "https://github.com/evenup/evenup-common",
   "project_page": "https://github.com/evenup/evenup-common",
   "issues_url": "https://github.com/evenup/evenup-common/issues",
   "operatingsystem_support": [
@@ -12,9 +12,9 @@
     { "operatingsystem":"CentOS", "operatingsystemrelease":[ "6", "7" ] }
   ],
   "dependencies": [
-    { "name": "torrancew/account", "version_requirement": ">= 0.0.5" },
-    { "name": "evenup/beaver", "version_requirement": ">= 1.1.0" },
+    { "name": "torrancew/account", "version_requirement": ">= 0.0.5 <1.0.0" },
+    { "name": "evenup/beaver", "version_requirement": ">= 1.1.0 <2.0.0" },
     { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
-    { "name": "puppetlabs/firewall", "version_requirement": ">= 1.2.0" }
+    { "name": "puppetlabs/firewall", "version_requirement": ">= 1.2.0 <2.0.0" }
   ]
 }
