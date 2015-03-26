@@ -1,8 +1,10 @@
 ---
+  Rakefile:
+    extra_disabled_lint_checks:
+      - disable_undef_in_function_assignment
   .travis.yml:
     hc_secure: "KyYTLx7Fv+6cA7JkOAzLChpBHy6ITJfKstZEdB8gZPBlUvrDNPOX0f+6CWMrMkIdCbWK2XS0P7YJxXFg2iouye9mRgeC+5fDpUwEq0T0WWN4mbLS6XGqHxfzsUGA+mXNEhlc2XlxMOglF768UYVRZ3FuHt2vAoWRPGzjJvsKNGk="
   spec/acceptance/nodesets/ubuntu-server-1204-x64.yml:
     unmanaged: true
   spec/acceptance/nodesets/ubuntu-server-1404-x64.yml:
     unmanaged: true
-

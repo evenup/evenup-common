@@ -21,6 +21,7 @@ PuppetLint.configuration.log_format = "%{path}:%{linenumber}:%{check}:%{KIND}:%{
 PuppetLint.configuration.send('relative')
 PuppetLint.configuration.send('disable_80chars')
 PuppetLint.configuration.send('disable_class_inherits_from_params_class')
+PuppetLint.configuration.send('disable_undef_in_function_assignment')
 PuppetSyntax.exclude_paths = exclude_paths
 
 desc "Run acceptance tests"

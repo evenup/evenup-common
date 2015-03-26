@@ -31,30 +31,30 @@ class common::params {
   $default_pre_rules = {
     '000 accept all icmp' => {
       proto   => 'icmp',
-      action  => 'accept'
+      action  => 'accept',
     },
     '001 accept all to lo interface' => {
       proto   => 'all',
       iniface => 'lo',
-      action  => 'accept'
+      action  => 'accept',
     },
     '002 reject local traffic not on loopback interface' => {
       iniface     => '! lo',
       proto       => 'all',
       destination => '127.0.0.1/8',
-      action      => 'reject'
+      action      => 'reject',
     },
     '003 accept related established rules' => {
       proto   => 'all',
       state => ['RELATED', 'ESTABLISHED'],
       action  => 'accept',
-    }
+    },
   }
 
   $default_post_rules = {
     '999 drop all' => {
       proto   => 'all',
-      action  => 'drop'
-    }
+      action  => 'drop',
+    },
   }
 }
