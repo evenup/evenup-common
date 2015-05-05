@@ -11,6 +11,7 @@ class common::users (
 
   if $root_pw {
     user { 'root':
+      home           => '/root',
       comment        => 'root Puppet-managed User',
       password       => $root_pw,
       purge_ssh_keys => true,
