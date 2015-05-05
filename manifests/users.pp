@@ -16,7 +16,9 @@ class common::users (
       password       => $root_pw,
       purge_ssh_keys => true,
     }
+  }
 
+  if $root_ssh_key {
     ssh_authorized_key { 'root':
       type => 'ssh-rsa',
       name => 'root SSH Key',
