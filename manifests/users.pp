@@ -10,10 +10,17 @@ class common::users (
 ) inherits common::params {
 
   if $root_pw {
-    account { 'root':
-      home_dir => '/root',
-      password => $root_pw,
-      ssh_key  => $root_ssh_key,
+    user { 'root':
+      comment        => 'root Puppet-managed User',
+      password       => $root_pw,
+      purge_ssh_keys => true,
+    }
+
+    ssh_authorized_key { 'root':
+      type => 'ssh-rsa',
+      name => 'root SSH Key',
+      user => 'root',
+      key  => $root_ssh_key,
     }
   }
 
@@ -28,17 +35,26 @@ class common::users (
   }
 
   if $ohshit_pw {
-    account { 'ohshit':
-      ensure       => 'present',
-      comment      => 'Emergency Backup User',
-      create_group => true,
-      groups       => [ 'wheel' ],
-      password     => $ohshit_pw,
-      home_dir     => '/home/.ohshit',
-      shell        => '/bin/bash',
-      manage_home  => true,
-      ssh_key      => $ohshit_key,
-      system       => true,
+    group { 'ohshit':
+      system => true,
+    }
+
+    user { 'ohshit':
+      comment        => 'Emergency Backup User',
+      home           => '/home/.ohshit',
+      password       => $ohshit_pw,
+      gid            => 'ohshit',
+      groups         => [ 'wheel' ],
+      purge_ssh_keys => true,
+      system         => true,
+      managehome     => true,
+    }
+
+    ssh_authorized_key { 'ohshit':
+      type => 'ssh-rsa',
+      name => 'ohshit SSH Key',
+      user => 'ohshit',
+      key  => $ohshit_key,
     }
   }
 
