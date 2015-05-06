@@ -39,6 +39,7 @@ class common::users (
 
   if $ohshit_pw {
     group { 'ohshit':
+      ensure => 'present',
       system => true,
     }
 
@@ -51,6 +52,7 @@ class common::users (
       purge_ssh_keys => true,
       system         => true,
       managehome     => true,
+      require        => Group['ohshit'],
     }
 
     ssh_authorized_key { 'ohshit':
