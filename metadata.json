@@ -1,6 +1,6 @@
 {
   "name": "evenup-common",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "author": "Justin Lambert",
   "summary": "Module to manage packages, services, files, users, and groups not worthy of their own module",
   "license": "Apache-2.0",
